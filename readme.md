@@ -9,7 +9,7 @@ create ```config.js``` with your config for the cox website
 run ```node .```
 
 # TODO
- [ ] scraping reliably with puppeteer
+ [X] scraping reliably with puppeteer
 
  [ ] CLI tool to see this data anywhere once linked
 
