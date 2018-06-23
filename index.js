@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer')
-const path = require('path')
 const config = require('./config')
 
 const openPage = async url => {
@@ -14,8 +13,6 @@ const openPage = async url => {
   await page.click('#consolidated-signin > div:nth-child(11) > input')
   await page.waitForNavigation()
 
-  await page.screenshot({ path: 'example.png' })
-
   const data = await page.evaluate(() => {
     const plan = document.querySelector('.plan-gb').innerText
     const used = document.querySelector('.data-used').innerText
@@ -26,7 +23,6 @@ const openPage = async url => {
 
   return data
 }
-
 ;(() => {
   console.log('Fetching your cox usage data')
   return openPage(config.url).then(console.log)
