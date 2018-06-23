@@ -9,7 +9,10 @@ create ```config.js``` with your config for the cox website
 run ```node .```
 
 # TODO
-[] scraping reliably with puppeteer
-[] CLI tool to see this data anywhere once linked
-[] use CLI to create config if not present
-[] electron desktop widgit frontend
+ [ ] scraping reliably with puppeteer
+
+ [ ] CLI tool to see this data anywhere once linked
+
+ [ ] use CLI to create config if not present
+
+ [ ] electron desktop widgit frontend
