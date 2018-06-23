@@ -1,4 +1,4 @@
-## Cox Data Useage
+## Cox Data Usage
 data caps are lame, this should help stay on top of the issue with a simple cli to get the current useage for your account.
 
 ## Installation
