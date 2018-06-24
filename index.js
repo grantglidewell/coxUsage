@@ -48,8 +48,10 @@ const makeGraph = pct => {
     .join('')
 }
 ;(() => {
-  if(!config.pass || !config.userName || !config.url){
-    return console.log(chalk.red('Cannot fetch your data, there was a problem with your config'))
+  if (!config.pass || !config.userName || !config.url) {
+    return console.log(
+      chalk.red('Cannot fetch your data, there was a problem with your config')
+    )
   }
   console.log(
     '\n',
@@ -70,7 +72,11 @@ const makeGraph = pct => {
       '\n',
       chalk.cyan(`That is ${chalk.green(data.pct)} of your allowance`)
     )
-    console.log(chalk.yellow(makeGraph(data.pct)), '\n')
-    console.log(chalk.gray(`this usage is as of ${data.last}`),'\n')
+    console.log(chalk.yellow(makeGraph(data.pct)))
+    console.log(
+      '\n',
+      chalk.gray.bgBlue(`this usage is as of ${data.last}`),
+      '\n'
+    )
   })
 })()
