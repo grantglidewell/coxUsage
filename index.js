@@ -3,7 +3,7 @@ const chalk = require('chalk')
 
 const config = require('./config')
 
-const openPage = async url => {
+const pullTheStrings = async url => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   await page.goto(url)
@@ -33,24 +33,38 @@ const openPage = async url => {
 
   return data
 }
+const makeGraph = pct => {
+  return Array(33)
+    .fill('-')
+    .map((el, i) => {
+      if (i * 3 < parseInt(pct)) {
+        return '='
+      }
+      return '-'
+    })
+    .join('')
+}
 ;(() => {
-  console.log('\n', chalk.yellow.inverse.underline('Fetching Your Cox Usage Data'), '\n')
+  console.log(
+    '\n',
+    chalk.yellow.inverse.underline('Fetching Your Cox Usage Data'),
+    '\n'
+  )
 
-  return openPage(config.url).then(data => {
+  return pullTheStrings(config.url).then(data => {
     console.log(
       '\n',
       chalk.cyan(
         `You have used ${chalk.green(
           data.used
         )}GB of your monthly ${chalk.green(data.plan)}GB`
-      ),
-      '\n'
+      )
     )
-    // make a percentage graph
     console.log(
       '\n',
       chalk.cyan(`That is ${chalk.green(data.pct)} of your allowance`)
     )
+    console.log(chalk.yellow(makeGraph(data.pct)))
     console.log('\n')
   })
 })()
