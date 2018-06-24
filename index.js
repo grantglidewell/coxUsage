@@ -25,25 +25,32 @@ const openPage = async url => {
       .querySelectorAll('.data-used')[1]
       .innerText.match(/\d/g)
       .join('')
+    const pct = document.querySelectorAll('.data-used-per')[1].innerText
 
-    return { plan, used }
+    return { plan, used, pct }
   })
   await browser.close()
 
   return data
 }
 ;(() => {
-  console.log(chalk.white.underline('Fetching your cox usage data'))
-  console.log('')
-  
+  console.log('\n', chalk.yellow.underline('Fetching your cox usage data'), '\n')
+
   return openPage(config.url).then(data => {
     console.log(
-      chalk.yellow(
+      '\n',
+      chalk.cyan(
         `You have used ${chalk.green(
           data.used
         )}gb of your monthly ${chalk.green(data.plan)}gb`
-      )
+      ),
+      '\n'
     )
-    console.log('')
+    // make a percentage graph
+    console.log(
+      '\n',
+      chalk.cyan(`That is ${chalk.green(data.pct)} of your allowance`)
+    )
+    console.log('\n')
   })
 })()
