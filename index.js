@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer')
+const chalk = require('chalk')
+
 const config = require('./config')
 
 const openPage = async url => {
@@ -15,7 +17,7 @@ const openPage = async url => {
 
   const data = await page.evaluate(() => {
     const plan = document.querySelector('.plan-gb').innerText
-    const used = document.querySelector('.data-used').innerText
+    const used = document.querySelectorAll('.data-used')[1].innerText
 
     return { plan, used }
   })
@@ -24,6 +26,20 @@ const openPage = async url => {
   return data
 }
 ;(() => {
-  console.log('Fetching your cox usage data')
-  return openPage(config.url).then(console.log)
+  console.log(
+    chalk.white.underline('Fetching your cox usage data')
+  )
+  console.log('')
+  return openPage(config.url).then(data => {
+    const total = data.plan.match(/\d/g).join('')
+    const usage = data.used.match(/\d/g).join('')
+    console.log(
+      chalk.yellow(
+        `You have used ${chalk.green(usage)}gb of you monthly ${chalk.green(
+          total
+        )}gb`
+      )
+    )
+    console.log('')
+  })
 })()
