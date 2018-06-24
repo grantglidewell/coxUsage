@@ -8,14 +8,12 @@ create ```config.js``` with your config for the cox website
 
 run ```node .``` to make sure your config is working
 
-![screenshot](https://raw.githubusercontent.com/grantglidewell/coxUsage/master/img.png)
-
 run ```npm link```
 
 ## Usage
 run ```usage``` whenever you want to be enraged by your data limit.
 
-
+![screenshot](https://raw.githubusercontent.com/grantglidewell/coxUsage/master/img.png)
 
 ### TODO
  [X] scraping reliably with puppeteer
