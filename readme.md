@@ -12,7 +12,7 @@ run ```node .```
 ![screenshot](https://raw.githubusercontent.com/grantglidewell/coxUsage/master/img.png)
 
 
-# TODO
+### TODO
  [X] scraping reliably with puppeteer
 
  [ ] CLI tool to see this data anywhere once linked
