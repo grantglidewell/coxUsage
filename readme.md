@@ -11,7 +11,7 @@ run ```node .``` to make sure your config is working
 run ```npm link```
 
 ## Usage
-run ```usage``` whenever you want to be enraged by your data limit.
+run ```coxusage``` whenever you want to be enraged by your data limit.
 
 ![screenshot](https://raw.githubusercontent.com/grantglidewell/coxUsage/master/img.png)
 
