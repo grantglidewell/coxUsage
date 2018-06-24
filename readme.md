@@ -4,9 +4,13 @@ data caps are lame, this should help stay on top of the issue with a simple cli 
 ## Installation
 ```npm i```
 
-## Useage
+## Usage
 create ```config.js``` with your config for the cox website
+
 run ```node .```
+
+![screenshot](https://raw.githubusercontent.com/grantglidewell/coxUsage/master/img.png)
+
 
 # TODO
  [X] scraping reliably with puppeteer
