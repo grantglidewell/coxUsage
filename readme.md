@@ -4,7 +4,6 @@ data caps are lame, this should help stay on top of the issue with a simple cli 
 ## Installation
 ```npm i```
 
-## Usage
 create ```config.js``` with your config for the cox website
 
 run ```node .``` to make sure your config is working
@@ -13,7 +12,8 @@ run ```node .``` to make sure your config is working
 
 run ```npm link```
 
-use ```coxusage``` whenever you want to be enraged by your data limit.
+## Usage
+run ```usage``` whenever you want to be enraged by your data limit.
 
 
 
