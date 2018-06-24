@@ -45,6 +45,9 @@ const makeGraph = pct => {
     .join('')
 }
 ;(() => {
+  if(!config.pass || config.userName || config.url){
+    return console.log(chalk.red('Cannot fetch your data, there was a problem with your config'))
+  }
   console.log(
     '\n',
     chalk.yellow.inverse.underline('Fetching Your Cox Usage Data'),
