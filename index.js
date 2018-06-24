@@ -34,7 +34,7 @@ const openPage = async url => {
   return data
 }
 ;(() => {
-  console.log('\n', chalk.yellow.underline('Fetching your cox usage data'), '\n')
+  console.log('\n', chalk.yellow.inverse.underline('Fetching Your Cox Usage Data'), '\n')
 
   return openPage(config.url).then(data => {
     console.log(
@@ -42,7 +42,7 @@ const openPage = async url => {
       chalk.cyan(
         `You have used ${chalk.green(
           data.used
-        )}gb of your monthly ${chalk.green(data.plan)}gb`
+        )}GB of your monthly ${chalk.green(data.plan)}GB`
       ),
       '\n'
     )
