@@ -16,8 +16,15 @@ const openPage = async url => {
   await page.waitForNavigation()
 
   const data = await page.evaluate(() => {
-    const plan = document.querySelector('.plan-gb').innerText
-    const used = document.querySelectorAll('.data-used')[1].innerText
+    // these selectors are delicate and likely to break
+    const plan = document
+      .querySelector('.plan-gb')
+      .innerText.match(/\d/g)
+      .join('')
+    const used = document
+      .querySelectorAll('.data-used')[1]
+      .innerText.match(/\d/g)
+      .join('')
 
     return { plan, used }
   })
@@ -26,18 +33,15 @@ const openPage = async url => {
   return data
 }
 ;(() => {
-  console.log(
-    chalk.white.underline('Fetching your cox usage data')
-  )
+  console.log(chalk.white.underline('Fetching your cox usage data'))
   console.log('')
+  
   return openPage(config.url).then(data => {
-    const total = data.plan.match(/\d/g).join('')
-    const usage = data.used.match(/\d/g).join('')
     console.log(
       chalk.yellow(
-        `You have used ${chalk.green(usage)}gb of you monthly ${chalk.green(
-          total
-        )}gb`
+        `You have used ${chalk.green(
+          data.used
+        )}gb of your monthly ${chalk.green(data.plan)}gb`
       )
     )
     console.log('')
