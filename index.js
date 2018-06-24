@@ -26,8 +26,9 @@ const pullTheStrings = async url => {
       .innerText.match(/\d/g)
       .join('')
     const pct = document.querySelectorAll('.data-used-per')[1].innerText
+    const last = document.querySelectorAll('.last-data-refreshed')[1].innerText
 
-    return { plan, used, pct }
+    return { plan, used, pct, last }
   })
   await browser.close()
 
@@ -67,7 +68,7 @@ const makeGraph = pct => {
       '\n',
       chalk.cyan(`That is ${chalk.green(data.pct)} of your allowance`)
     )
-    console.log(chalk.yellow(makeGraph(data.pct)))
-    console.log('\n')
+    console.log(chalk.yellow(makeGraph(data.pct)), '\n')
+    console.log(chalk.gray(`this usage is as of ${data.last}`),'\n')
   })
 })()
