@@ -14,10 +14,3 @@ run ```npm link```
 run ```coxusage``` whenever you want to be enraged by your data limit.
 
 ![screenshot](https://raw.githubusercontent.com/grantglidewell/coxUsage/master/img.png)
-
-### TODO
- [X] scraping reliably with puppeteer
-
- [X] npm link to see this data anywhere once linked
-
- [ ] electron desktop widgit frontend
