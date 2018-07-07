@@ -29,15 +29,17 @@ const pullTheStrings = async url => {
       .join('')
     const pct = document.querySelectorAll('.data-used-per')[1].innerText
     const last = document.querySelectorAll('.last-data-refreshed')[1].innerText
+    const period = document.querySelectorAll('.usage-period-desktop')[1]
+      .innerText
 
-    return { plan, used, pct, last }
+    return { plan, used, pct, last, period }
   })
   await browser.close()
 
   return data
 }
 const makeGraph = pct => {
-  return Array(33)
+  const graph = Array(33)
     .fill('-')
     .map((el, i) => {
       if (i * 3 < parseInt(pct)) {
@@ -45,7 +47,8 @@ const makeGraph = pct => {
       }
       return '-'
     })
-    .join('')
+  graph.splice(graph.indexOf('-'), 1, `[${pct}]`)
+  return graph.join('')
 }
 ;(() => {
   if (!config.pass || !config.userName || !config.url) {
@@ -53,11 +56,7 @@ const makeGraph = pct => {
       chalk.red('Cannot fetch your data, there was a problem with your config')
     )
   }
-  console.log(
-    '\n',
-    chalk.yellow.inverse.underline('Fetching Your Cox Usage Data'),
-    '\n'
-  )
+  console.log('\n', chalk.yellow.inverse('Fetching Your Cox Usage Data'))
 
   return pullTheStrings(config.url).then(data => {
     console.log(
@@ -65,18 +64,16 @@ const makeGraph = pct => {
       chalk.cyan(
         `You have used ${chalk.green(
           data.used
-        )}GB of your monthly ${chalk.green(data.plan)}GB`
+        )} GB of your monthly ${chalk.green(data.plan)} GB as of ${data.last}`
       )
     )
     console.log(
       '\n',
-      chalk.cyan(`That is ${chalk.green(data.pct)} of your allowance`)
-    )
-    console.log(chalk.yellow(makeGraph(data.pct)))
-    console.log(
-      '\n',
-      chalk.gray.bgBlue(`this usage is as of ${data.last}`),
-      '\n'
+      chalk.yellow(
+        `${chalk.green(data.period.split('-')[0])}(${makeGraph(
+          data.pct
+        )})${chalk.green(data.period.split('-')[1])}`
+      )
     )
   })
 })()
