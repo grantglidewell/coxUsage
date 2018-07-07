@@ -73,7 +73,8 @@ const makeGraph = pct => {
         `${chalk.green(data.period.split('-')[0])}(${makeGraph(
           data.pct
         )})${chalk.green(data.period.split('-')[1])}`
-      )
+      ),
+      '\n'
     )
   })
 })()
